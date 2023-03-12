@@ -3,7 +3,6 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // base:'/mangosteen/', //build path
-  base:'/',
+  base:'/github-pages-demo1/dist/',
   plugins: [vue()]
 })
