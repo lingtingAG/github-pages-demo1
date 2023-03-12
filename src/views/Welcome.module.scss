@@ -1,0 +1,22 @@
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  > header{
+    text-align: center;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    .img{
+      height:100px;
+    }
+  }
+  >main{
+    flex-grow: 1;
+  }
+  >footer{
+    flex-shrink: 0;
+  }
+}
