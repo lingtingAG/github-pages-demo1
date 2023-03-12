@@ -6,10 +6,12 @@ specifiers:
   typescript: 4.5.4
   vite: 4.1.4
   vue: 3.2.25
+  vue-router: '4'
   vue-tsc: 0.29.8
 
 dependencies:
   vue: 3.2.25
+  vue-router: 4.1.6_vue@3.2.25
 
 devDependencies:
   '@vitejs/plugin-vue': 2.3.0_vite@4.1.4+vue@3.2.25
@@ -728,6 +730,10 @@ packages:
     dependencies:
       '@vue/compiler-dom': 3.2.25
       '@vue/shared': 3.2.25
+
+  /@vue/devtools-api/6.5.0:
+    resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==}
+    dev: false
 
   /@vue/reactivity-transform/3.2.25:
     resolution: {integrity: sha512-fOiW67PUalicMfMr4Sc9l8mUtkN7ZD+G1/zJV8blzQ8GEZSeRcJm11gqve6Ps623ju5YORu7V/Q1gZoOJ9WO4g==}
@@ -1498,6 +1504,15 @@ packages:
       vscode-pug-languageservice: 0.29.8
       vscode-typescript-languageservice: 0.29.8
     dev: true
+
+  /vue-router/4.1.6_vue@3.2.25:
+    resolution: {integrity: sha512-DYWYwsG6xNPmLq/FmZn8Ip+qrhFEzA14EI12MsMgVxvHFDYvlr4NXpVF5hrRH1wVcDP8fGi5F4rxuJSl8/r+EQ==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.5.0
+      vue: 3.2.25
+    dev: false
 
   /vue-tsc/0.29.8_typescript@4.5.4:
     resolution: {integrity: sha512-pT0wLRjvRuSmB+J4WJT6uuV9mO0KtSSXEAtaVXZQzyk5+DJdbLIQTbRce/TXSkfqt1l1WogO78RjtOJFiMCgfQ==}
