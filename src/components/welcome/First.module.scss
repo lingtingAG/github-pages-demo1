@@ -2,6 +2,7 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  padding-bottom: var(--welcome-nav-gap);
   > .card {
     flex-grow: 1;
     background-color: var(--welcome-card-bg);
@@ -13,23 +14,28 @@
     justify-items: center;
     flex-direction: column;
     text-align: center;
-    > h2{
+    > h2 {
       margin-top: 20px;
     }
   }
   > .actions {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: var(--z-index-bottom-nav);
     display: flex;
     justify-content: space-between;
     justify-items: center;
-    margin: 0 16px;
-    padding: 20px 0;
+    padding: 20px 16px;
     color: var(--welcome--text);
+    background-color: var(--welcome--bg-end);
     font-size: 20px;
-    > .fake{
+    > .fake {
       visibility: hidden;
     }
   }
 }
-.pig{
+.pig {
   height: 130px;
 }
