@@ -1,41 +1,35 @@
-.wrapper {
+.card {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  padding-bottom: var(--welcome-nav-gap);
-  > .card {
-    flex-grow: 1;
-    background-color: var(--welcome-card-bg);
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px 16px 0;
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-    flex-direction: column;
-    text-align: center;
-    > h2 {
-      margin-top: 20px;
-    }
-  }
-  > .actions {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: var(--z-index-bottom-nav);
-    display: flex;
-    justify-content: space-between;
-    justify-items: center;
-    padding: 20px 16px;
-    color: var(--welcome--text);
-    background-color: var(--welcome--bg-end);
-    font-size: 20px;
-    > .fake {
-      visibility: hidden;
-    }
+  background: var(--welcome-card-bg);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  > h2 {
+    margin-top: 40px;
   }
 }
-.icon {
-  height: 130px;
+
+.actions {
+  position: fixed;
+  z-index: var(--z-index-bottom-nav);
+  background-color: var(--welcome--bg-end);
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  height: var(--welcome-nav-height);
+  padding: 0 16px;
+  color: var(--welcome-text);
+  padding-bottom: var(--welcome-nav-gap);
+  > .fake {
+    visibility: hidden;
+  }
 }
