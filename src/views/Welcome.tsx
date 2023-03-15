@@ -4,22 +4,21 @@ import s from './Welcome.module.scss'
 import { useSwipe } from '../hooks/useSwipe';
 import { throttle } from '../shared/throttle';
 
+const pushMap: Record<string, string> = {
+  'Welcome1': '/welcome/2',
+  'Welcome2': '/welcome/3',
+  'Welcome3': '/welcome/4',
+  'Welcome4': '/start',
+}
+
 export const Welcome = defineComponent({
   setup: (props, context) => {
     const main = ref<HTMLElement>();
     const route = useRoute();
     const router = useRouter();
     const push = throttle(() => {
-      console.log(111);
-      if (route.name === 'welcome1') {
-        router.push('/welcome/2');
-      } else if (route.name === 'welcome2') {
-        router.push('/welcome/3');
-      } else if (route.name === 'welcome3') {
-        router.push('/welcome/4');
-      } else if (route.name === 'welcome4') {
-        router.push('/start');
-      }
+      const name = (route.name || 'Welcome').toString();
+      router.push(pushMap[name]);
     }, 500)
     const { direction, swiping } = useSwipe(main, {
       beforeStart: e => e.preventDefault(),
