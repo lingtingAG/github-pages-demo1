@@ -15,7 +15,7 @@
 }
 
 .actions {
-  position: fixed;
+  position: absolute;
   z-index: var(--z-index-bottom-nav);
   background-color: var(--welcome--bg-end);
   left: 0;
