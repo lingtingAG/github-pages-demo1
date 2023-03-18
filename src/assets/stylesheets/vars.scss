@@ -3,7 +3,8 @@
   --welcome-text: white;
   --welcome-bg-start: #5d33be;
   --welcome-bg-end: #f84cd7;
-  --z-index-bottom-nav: 10;
+  --z-index-bottom-nav: 8;
+  --z-index-overlay: 16;
   --welcome-nav-height: 50px;
   --welcome-nav-gap: 8px;
   --transition-duration: 0.5s;
@@ -17,6 +18,11 @@
   --navbar-bg-start: var(--welcome-bg-start);
   --navbar-bg-end: var(--welcome-bg-end);
   --nav-bar-text: white;
+  --overlay-mask-bg: rgba(0,0,0,0.5);
+  --overlay-bg: white;
+  --top-safe-area-height: 24px;
+  --overlay-user-bg: #5C33BE;
+  --overlay-user-text: white;
 }
 
 h1, h2, h3 ,h4, h5, h6{
