@@ -21,10 +21,6 @@ export const ItemCreate = defineComponent({
           icon: () => <Icon name="back" class={s.navIcon} />,
           default: () => (
             <>
-              {/* <Tabs */}
-                {/* selected={refKind.value} */}
-                {/* onUpdateSelected={name => refKind.value = name} */}
-              {/* > */}
               <Tabs
                 v-model:selected={refKind.value}
               >

@@ -1,8 +1,27 @@
 .tabs{
   &_nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
     > li{
+      flex-grow: 1;
+      flex-shrink: 0;
+      padding: 12px 0;
+      background-color: var(--welcome-bg-end);
+      color: var(--nav-bar-text);
       &.selected{
-        background: red;
+        position: relative;
+        &::after{
+          position: absolute;
+          content: '';
+          display: block;
+          bottom: 0;
+          left: 0;
+          height: 4px;
+          width: 100%;
+          background-color: var( --tab-indicator-bg);
+        }
       }
     }
   }

@@ -6,33 +6,31 @@ export const Tabs = defineComponent({
     selected: {
       type: String as PropType<string>,
     },
-    // onUpdateSelected: {
-    //   type: Function as PropType<(name: string) => void>,
-    // },
   },
   setup: (props, context) => {
     return () => {
-      const arr = context.slots.default?.();
-      if (!arr) return () => null;
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i].type !== Tab) {
+      const tabs = context.slots.default?.();
+      if (!tabs) return () => null;
+      for (let i = 0; i < tabs.length; i++) {
+        if (tabs[i].type !== Tab) {
           throw new Error("<Tabs> only accepts <Tab> as Children");
         }
       }
       return (
         <div class={s.tabs}>
           <ol class={s.tabs_nav}>
-            {arr.map((item) => (
+            {tabs.map((item) => (
               <li
                 class={item.props?.name === props.selected ? s.selected : ""}
-                // onClick={() => props.onUpdateSelected?.(item.props?.name)}
                 onClick={() => context.emit('update:selected', (item.props?.name))}
               >
                 {item.props?.name}
               </li>
             ))}
           </ol>
-          <div></div>
+          <div>
+            {tabs.find((item) => item.props?.name === props.selected)}
+          </div>
         </div>
       );
     };
