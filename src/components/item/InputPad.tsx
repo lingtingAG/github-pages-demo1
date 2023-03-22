@@ -58,7 +58,9 @@ export const InputPad = defineComponent({
               </Popup>
             </span>
           </span>
-          <span class={s.amount}>{ refAmount.value }</span>
+          {
+            refAmount.value === "" ? <span class={s.amount_input}>{ '请输入金额' }</span> : <span class={s.amount}>{ refAmount.value }</span>
+          }
         </div>
         <div class={s.buttons}>
           {buttonMap.map((button) => (

@@ -19,8 +19,11 @@
   }
   > .amount {
     font-size: 18px;
-    color: var(--text-color);
     color: var(--amount-color);
+  }
+  > .amount_input {
+    font-size: 15px;
+    color: var(--date-text);
   }
 }
 .buttons {
