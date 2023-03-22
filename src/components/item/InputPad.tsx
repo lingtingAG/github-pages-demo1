@@ -1,7 +1,8 @@
-import { Time } from "../../shared/time";
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, ref } from "vue";
 import { Icon } from "../../shared/Icon";
 import s from "./InputPad.module.scss";
+import { DatePicker, Popup } from "vant";
+import { Time } from "../../shared/time";
 
 export const InputPad = defineComponent({
   props: {
@@ -11,6 +12,8 @@ export const InputPad = defineComponent({
   },
   setup: (props, context) => {
     const now = new Date();
+    const refDate = ref(new Time(now).format().split("-"));
+    const refShowPop = ref(false);
     const buttonMap = [
       { text: "1", onClick: () => {} },
       { text: "2", onClick: () => {} },
@@ -34,18 +37,25 @@ export const InputPad = defineComponent({
         <div class={s.dateAndAmunt}>
           <span class={s.date}>
             <Icon class={s.icon} name="date" />
-            <span><input type="date" value = {new Time(now).format()} /></span>
+            <span>
+              <span onClick={() => (refShowPop.value = true)}>
+                {new Time(now).format()}
+              </span>
+              <Popup position="bottom" v-model:show={refShowPop.value}>
+                <DatePicker
+                  v-model={refDate.value}
+                  title="选择日期"
+                  onConfirm={() => (refShowPop.value = false)}
+                />
+              </Popup>
+            </span>
           </span>
           <span class={s.amount}>123.45</span>
         </div>
         <div class={s.buttons}>
-          {buttonMap.map(
-            (
-              button
-            ) => (
-              <button onClick={button.onClick}>{button.text}</button>
-            )
-          )}
+          {buttonMap.map((button) => (
+            <button onClick={button.onClick}>{button.text}</button>
+          ))}
         </div>
       </>
     );
