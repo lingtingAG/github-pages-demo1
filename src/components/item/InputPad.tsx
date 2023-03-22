@@ -28,12 +28,12 @@ export const InputPad = defineComponent({
     ];
     return () => (
       <>
-        <div>
-          <span class={s.notes}>
-            <Icon name="date" />
+        <div class={s.dateAndAmunt}>
+          <span class={s.date}>
+            <Icon class={s.icon} name="date" />
             <span>2023-03-22</span>
           </span>
-          <span class={s.amount}>数字</span>
+          <span class={s.amount}>123.45</span>
         </div>
         <div class={s.buttons}>
           {buttonMap.map(

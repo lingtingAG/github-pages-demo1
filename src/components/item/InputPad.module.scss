@@ -1,8 +1,32 @@
+.dateAndAmunt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11.5px;
+  font-family: monospace;
+  border-top: 1px solid var(--buttom-border-color);
+  > .date {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 12px;
+    color: var(--date-text);
+    .icon {
+      margin-right: 5px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+  > .amount {
+    font-size: 18px;
+    color: var(--text-color);
+    color: var(--amount-color);
+  }
+}
 .buttons {
   display: flex;
   flex-wrap: wrap;
   border-top: 1px solid var(--buttom-border-color);
-  // border-left: 1px solid var(--buttom-border-color);
   > button {
     border: none;
     width: 25%;
@@ -10,15 +34,14 @@
     border-right: 1px solid var(--buttom-border-color);
     border-bottom: 1px solid var(--buttom-border-color);
     background: transparent;
-    &:nth-child(4n){
+    &:nth-child(4n) {
       border-right: none;
     }
     &:nth-child(13),
     &:nth-child(14),
     &:nth-child(15),
-    &:nth-child(16){
+    &:nth-child(16) {
       border-bottom: none;
     }
-
   }
 }
