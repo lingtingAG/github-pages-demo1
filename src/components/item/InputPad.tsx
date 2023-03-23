@@ -3,6 +3,7 @@ import { Icon } from "../../shared/Icon";
 import s from "./InputPad.module.scss";
 import { DatePicker, Popup } from "vant";
 import { Time } from "../../shared/time";
+import { indexOf } from 'lodash';
 
 export const InputPad = defineComponent({
   props: {
@@ -12,6 +13,27 @@ export const InputPad = defineComponent({
   },
   setup: (props, context) => {
     const appendText = (text: number | string) => {
+      const textString = text.toString();
+      const dotIndex = refAmount.value.indexOf(".");
+      if (refAmount.value.length >= 10) {
+        return;
+      }
+      if (dotIndex >= 0 && refAmount.value.length - dotIndex > 2) {
+        return;
+      }
+      if (textString === ".") {
+        if (dotIndex >= 0) { // 已经有小数点了
+          return;
+        }
+      } else if (textString === "0") {
+          if (refAmount.value === '0') { // 没有小数点但是有0
+            return;
+          }
+      } else {
+        if (refAmount.value === '0') {
+          refAmount.value = '';
+        }
+      }
       refAmount.value += text;
     };
     const buttonMap = [
@@ -26,7 +48,7 @@ export const InputPad = defineComponent({
       { text: '9', onClick: () => { appendText(9) } },
       { text: '.', onClick: () => { appendText('.') } },
       { text: '0', onClick: () => { appendText(0) } },
-      { text: '清空', onClick: () => { refAmount.value = '0' } },
+      { text: '清空', onClick: () => { refAmount.value = '' } },
       { text: "提交", onClick: () => {appendText('')} },
     ];
     const refDate = ref(new Time(new Date()).format().split("-"));
