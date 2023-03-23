@@ -25,3 +25,31 @@ const div = ref<HTMLDivElement>();
 ```tsx
 const div = ref<HTMLDivElement ｜ null>(null);
 ```
+
+```javascript
+https://unicode.org/emoji/charts/full-emoji-list.html
+
+const result = [];
+const trList = document.querySelectorAll('table')[0].querySelectorAll('tr')
+Array.from(trList).map(tr => {
+  const first = tr.children[0];
+  const second = tr.children[1];
+  if(first.classList.contains('mediumhead')){
+    // console.log(first, '分类');
+    result.push([first.textContent])
+  }else if(first.classList.contains('rchars')){
+    if(first.tagName.toLowerCase() === 'th'){
+      // console.log(first, '表头');
+    }else{
+      const last = result[result.length -1];
+      last[1] = last[1] || [];
+      last[1].push(second.textContent);
+      // console.log(second, '数据');
+    }
+  }
+})
+JSON.stringify(result);
+
+// vscode 选择 * 使用正则替换 U\+([0-9a-f]{4,5}) ---> \\u{$1}
+
+```
