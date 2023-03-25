@@ -1,4 +1,4 @@
-import { defineComponent, PropType, reactive } from 'vue';
+import { defineComponent, PropType, reactive, toRaw } from 'vue';
 import { MainLayout } from '../../layouts/MainLayout';
 import { Button } from '../../shared/Button';
 import { Icon } from '../../shared/Icon';
@@ -15,12 +15,26 @@ export const TagCreate = defineComponent({
       name: "",
       sign: "",
     })
+    const onSubmit = (e: Event) => {
+      console.log(toRaw(formData));
+      const rules = [
+        { key: 'name', required: true, message: '必填' },
+        { key: 'name', pattern: /^.{0, 4}$/, message: '只能填写 1 到 4 个字符' },
+        { key: 'sign', required: true, message: '必填' },
+      ]
+      const errors = validate(formData, rules);
+      // const errors = [
+      //   name: ['错误1', '错误2']
+      //   sign: ['错误3', '错误4']
+      // ]
+      e.preventDefault();
+    }
     return () => (
       <MainLayout>{{
         title: () => '新建标签',
         icon: () => <Icon name="back" onClick={() => { }} class={s.navIcon}/>,
         default: () => (
-          <form class={s.form}>
+          <form onSubmit={onSubmit} class={s.form}>
             <div class={s.formRow}>
               <label class={s.formLabel}>
                 <span class={s.formItem_name}>标签名</span>
@@ -28,15 +42,15 @@ export const TagCreate = defineComponent({
                   <input v-model={formData.name} class={[s.formItem, s.input, s.error]}></input>
                 </div>
                 <div class={s.formItem_errorHint}>
-                  <span>必填</span>
+                  <span>{ errors['name'][0] }</span>
                 </div>
               </label>
             </div>
             <div class={s.formRow}>
               <label class={s.formLabel}>
-                <span class={s.formItem_name}>符号</span>
+                <span class={s.formItem_name}>符号 { formData.sign }</span>
                 <div class={s.formItem_value}>
-                  <EmojiSelect class={[s.formItem, s.error]} />
+                  <EmojiSelect v-model={formData.sign} class={[s.formItem, s.error]} />
                 </div>
                 <div class={s.formItem_errorHint}>
                   <span>必填</span>
