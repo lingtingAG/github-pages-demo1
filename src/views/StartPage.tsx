@@ -13,7 +13,6 @@ export const StartPage = defineComponent({
     const refOverlayVisiable = ref(false);
     const onClickMenu = () => {
       refOverlayVisiable.value = !refOverlayVisiable.value;
-      console.log(refOverlayVisiable.value);
     };
     return () => (
       <MainLayout>

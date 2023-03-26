@@ -25,7 +25,6 @@ export const validate = <T extends FData>(formData: T, rules: Rules<T>) => {
         break;
       case "pattern":
         if (value && !rule.regex.test(value.toString())) {
-          console.log(rule.regex.test(value.toString()))
           errors[key] = errors[key] ?? [];
           errors[key]?.push(message);
         }

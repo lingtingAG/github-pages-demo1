@@ -23,7 +23,6 @@ export const TagCreate = defineComponent({
         { key: 'name', type: 'pattern', regex: /^.{1,6}$/, message: '只能填写 1 到 6 个字符' },
         { key: 'sign', type: 'required', message: '必填' },
       ]
-      console.log(validate(formData, rules));
       Object.assign(errors, {
         name: [],
         sign: []
@@ -31,7 +30,6 @@ export const TagCreate = defineComponent({
       Object.assign(errors, validate(formData, rules));
       e.preventDefault();
     }
-    console.log(errors);
 
     return () => (
       <MainLayout>{{
