@@ -8,6 +8,7 @@
   time.lastDayOfMonth();
   time.lastDayOfYear();
   time.add(1, 'month');
+  time.subtract(1, 'month');
 */
 export class Time {
   date: Date;
