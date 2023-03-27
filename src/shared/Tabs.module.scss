@@ -9,11 +9,11 @@
     position: sticky;
     z-index: 1;
     top: 0;
+    background-color: var(--welcome-bg-end);
     > li{
       flex-grow: 1;
       flex-shrink: 0;
       padding: 12px 0;
-      background-color: var(--welcome-bg-end);
       color: var(--nav-bar-text);
       &.selected{
         position: relative;
@@ -28,6 +28,18 @@
           background-color: var( --tab-indicator-bg);
         }
       }
+    }
+  }
+}
+
+.lt_tabs{
+  .lt_tabs_nav{
+    justify-content: flex-start;
+    &_item{
+      flex-grow: 0;
+      padding-left: 16px;
+      padding-right: 16px;
+
     }
   }
 }
