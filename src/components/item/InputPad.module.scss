@@ -5,6 +5,7 @@
   padding: 11.5px;
   font-family: monospace;
   border-top: 1px solid var(--buttom-border-color);
+  background: var(--overlay-bg);
   > .date {
     display: flex;
     justify-content: start;
