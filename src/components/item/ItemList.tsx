@@ -1,10 +1,11 @@
-import { defineComponent, PropType, ref, reactive } from 'vue';
+import { defineComponent, PropType, ref, reactive, watchEffect } from 'vue';
 import s from './ItemList.module.scss';
 import { MainLayout } from '../../layouts/MainLayout';
 import { Icon } from '../../shared/Icon';
 import { Tab, Tabs } from '../../shared/Tabs';
 import { ItemSummary } from './ItemSummary';
 import { Time } from "../../shared/time";
+import { Overlay } from 'vant';
 export const ItemList = defineComponent({
   setup: (props, context) => {
     const refSelected = ref('本月');
@@ -27,14 +28,21 @@ export const ItemList = defineComponent({
         end: time.lastDayOfYear()
       }
     ];
+    const refOverlayVisible = ref(false);
+    watchEffect(() => {
+      if (refSelected.value === '自定义时间') {
+        refOverlayVisible.value = true
+      }
+    })
     return () => (
       <MainLayout>{
         {
           title: () => '山竹记账',
           icon: () => <Icon name="menu"></Icon>,
           default: () => (
-            <Tabs v-model:selected={refSelected.value} classPrefix="lt">
-              <Tab name="本月" >
+            <>
+              <Tabs v-model:selected={refSelected.value} classPrefix="lt">
+              <Tab name="本月">
                 <ItemSummary startDate={timeList[0].start.format()} endDate={timeList[0].end.format()} />
               </Tab>
               <Tab name="上月">
@@ -44,9 +52,27 @@ export const ItemList = defineComponent({
                 <ItemSummary startDate={timeList[2].start.format()} endDate={timeList[2].end.format()} />
               </Tab>
               <Tab name="自定义时间">
-                <ItemSummary startDate={timeList[3].start.format()} endDate={timeList[3].end.format()} />
+                <ItemSummary startDate={customTime.start.format()} endDate={customTime.end.format()} />
               </Tab>
-            </Tabs>
+              </Tabs>
+              <Overlay show={refOverlayVisible.value} class={s.overlay}>
+                <div class={s.overlay_inner}>
+                  <header>
+                    请选择时间
+                  </header>
+                  <main>
+                    <form>
+                      <div>
+
+                      </div>
+                      <div>
+
+                      </div>
+                    </form>
+                  </main>
+                </div>
+              </Overlay>
+            </>
           )
         }
       }</MainLayout>
