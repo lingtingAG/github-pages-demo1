@@ -3,7 +3,6 @@ import { Icon } from "../../shared/Icon";
 import s from "./InputPad.module.scss";
 import { DatePicker, Popup } from "vant";
 import { Time } from "../../shared/time";
-import { indexOf } from 'lodash';
 
 export const InputPad = defineComponent({
   props: {

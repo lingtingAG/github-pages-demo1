@@ -1,6 +1,9 @@
-import { computed, defineComponent, PropType, VNode } from 'vue';
+import { computed, defineComponent, PropType, ref } from 'vue';
 import { EmojiSelect } from './EmojiSelect';
 import s from './Form.module.scss';
+import { DatePicker, Popup } from "vant";
+import { Time } from "../shared/Time";
+
 export const Form = defineComponent({
   props: {
     onSubmit: {
@@ -22,7 +25,7 @@ export const FormItem = defineComponent({
       type: String
     },
     modelValue: {
-      type: [String, Number]
+      type: [String, Number, Date]
     },
     type: {
       type: String as PropType<'text' | 'emojiSelect' | 'date'>,
@@ -32,6 +35,8 @@ export const FormItem = defineComponent({
     }
   },
   setup: (props, context) => {
+    const refDateVisible = ref(false);
+    const refTimeValue = ref(props.modelValue?.toString().split('-'));
     const content = computed(() => {
       switch (props.type) {
         case 'text':
@@ -44,7 +49,21 @@ export const FormItem = defineComponent({
             onUpdate:modelValue = {value => context.emit('update:modelValue', value)}
             class={[s.formItem, s.emojiList, s.error]} />
         case 'date':
-          return <input />
+          return<>
+              <input readonly={true} value={props.modelValue}
+                onClick={() => { refDateVisible.value = true }}
+                class={[s.formItem, s.input, s.error]} />
+              <Popup position='bottom' v-model:show={refDateVisible.value}>
+                <DatePicker
+                  v-model={refTimeValue.value}
+                  title="选择年月日"
+                  onConfirm={({ selectedValues }) => {
+                    context.emit('update:modelValue', new Time(selectedValues.join('-')).format())
+                    refDateVisible.value = false
+                  }}
+                  onCancel={() => refDateVisible.value = false} />
+              </Popup>
+            </>
         case undefined:
           return context.slots.default?.()
       }
