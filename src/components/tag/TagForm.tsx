@@ -16,6 +16,7 @@ export const TagForm = defineComponent({
     })
     const errors = reactive<{ [k in keyof typeof formData]?: string[] }>({});
     const onSubmit = (e: Event) => {
+      e.preventDefault();
       const rules: Rules<typeof formData> = [
         { key: 'name', type: 'required', message: '必填' },
         { key: 'name', type: 'pattern', regex: /^.{1,6}$/, message: '只能填写 1 到 6 个字符' },
@@ -26,7 +27,6 @@ export const TagForm = defineComponent({
         sign: undefined,
       });
       Object.assign(errors, validate(formData, rules));
-      e.preventDefault();
     }
     return () => (
       <Form onSubmit={onSubmit}>
