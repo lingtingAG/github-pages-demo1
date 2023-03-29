@@ -7,6 +7,7 @@ import { ItemSummary } from './ItemSummary';
 import { Time } from "../../shared/time";
 import { Overlay } from 'vant';
 import { Form, FormItem } from '../../shared/Form';
+import { OverlayIcon } from '../../shared/Overlay';
 
 export const ItemList = defineComponent({
   setup: (props, context) => {
@@ -40,14 +41,19 @@ export const ItemList = defineComponent({
       e.preventDefault();
       refOverlayVisible.value = false;
     }
+    const onSelect = (value: string) => {
+      if (value === '自定义时间') {
+        refOverlayVisible.value = true
+      }
+    }
     return () => (
       <MainLayout>{
         {
           title: () => '山竹记账',
-          icon: () => <Icon name="menu"></Icon>,
+          icon: () => <OverlayIcon />,
           default: () => (
             <>
-              <Tabs v-model:selected={refSelected.value} classPrefix="lt" onUpdate:selected={() => refOverlayVisible.value = true}>
+              <Tabs v-model:selected={refSelected.value} classPrefix="lt" onUpdate:selected={onSelect}>
               <Tab name="本月">
                 <ItemSummary startDate={timeList[0].start.format()} endDate={timeList[0].end.format()} />
               </Tab>
@@ -72,7 +78,7 @@ export const ItemList = defineComponent({
                       <FormItem label="结束时间" v-model={customTime.end} type="date"></FormItem>
                       <FormItem>
                         <div class={s.actions}>
-                          <button type="button">取消</button>
+                          <button type="button" onClick={() => refOverlayVisible.value = false}>取消</button>
                           <button type="submit">确认</button>
                         </div>
                       </FormItem>
