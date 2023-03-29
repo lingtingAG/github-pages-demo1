@@ -59,7 +59,6 @@ export const ItemCreate = defineComponent({
       { id: 17, name: '彩票', sign: '￥', category: 'income' },
       { id: 19, name: '滴滴', sign: '￥', category: 'income' },
     ])
-    const onUpdateSelected = (name: string) => (refKind.value = name);
     return () => (
       <MainLayout class={s.layout}>{{
         title: () => "记一笔",

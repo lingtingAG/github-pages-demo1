@@ -47,7 +47,7 @@ export const ItemList = defineComponent({
           icon: () => <Icon name="menu"></Icon>,
           default: () => (
             <>
-              <Tabs v-model:selected={refSelected.value} classPrefix="lt">
+              <Tabs v-model:selected={refSelected.value} classPrefix="lt" onUpdate:selected={() => refOverlayVisible.value = true}>
               <Tab name="本月">
                 <ItemSummary startDate={timeList[0].start.format()} endDate={timeList[0].end.format()} />
               </Tab>
