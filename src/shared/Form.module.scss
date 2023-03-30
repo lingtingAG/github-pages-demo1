@@ -23,8 +23,12 @@
       border-color: var(--error-color);
     }
   }
-
-  &_name {
+  &.validationCodeInput{
+    width: 8em;
+    flex-grow: 0;
+  }
+  &.validationCodeButton{
+    margin-left: 16px;
   }
   &_value {
     display: flex;
