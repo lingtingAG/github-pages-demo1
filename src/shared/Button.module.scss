@@ -19,4 +19,8 @@
     background: var(--button-bg-danger);
     border-color: var(--button-bg-danger);
   }
+  &[disabled]{
+    opacity: .8;
+    cursor: not-allowed;
+  }
 }
