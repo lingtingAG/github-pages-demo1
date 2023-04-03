@@ -9,7 +9,7 @@ export const Form = defineComponent({
   props: {
     onSubmit: {
       type: Function as PropType<(e: Event) => void>,
-    }
+    },
   },
   setup: (props, context) => {
     return () => (
@@ -37,6 +37,9 @@ export const FormItem = defineComponent({
     placeholder: String,
     options: {
       type: Array as PropType<Array<{ value: string, text: string }>>,
+    },
+    onClick: {
+      type: Function as PropType<() => void>,
     }
   },
   emits:['update:modelValue'],
@@ -61,7 +64,7 @@ export const FormItem = defineComponent({
               placeholder = {props.placeholder}
               class={[s.formItem, s.input, s.validationCodeInput]}
               onInput={(e: any) => context.emit('update:modelValue', e.target.value)} />
-            <Button class={[s.formItem, s.validationCodeButton]}>提交</Button>
+            <Button onClick={props.onClick} class={[s.formItem, s.validationCodeButton]}>提交</Button>
           </>
         case 'date':
           return<>
